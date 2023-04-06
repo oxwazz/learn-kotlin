@@ -1,12 +1,12 @@
-fun hello() {
+fun hello(): Unit {
     println("Hello")
 }
 
-fun greet(name: String) {
+fun greet(name: String): Unit {
     println("Hello $name")
 }
 
-fun biodata(name: String, age: Int = 0) {
+fun biodata(name: String, age: Int = 0): Unit {
     println("Name: $name")
     println("Age: $age")
 }
@@ -17,28 +17,47 @@ fun add(a: Int, b: Int): Int {
 
 fun addShorter(a: Int, b: Int): Int = a + b
 
+fun sum(name: String, vararg numbers: Int): String {
+    var sum = 0
+    for (number in numbers) {
+        sum += number
+    }
+    return "total $name: $sum"
+}
+
+fun String.hello(): Unit {
+    println("Hello $this")
+}
 
 fun main() {
     // simple function
     hello()
 
-    // function with parameter
+    // parameter
     greet("Halim")
 
-    // function with multiple parameter
+    // multiple parameter
     biodata("Halim", 17)
 
-    // function with default parameter
+    // default parameter
     biodata("Budi")
 
-    // function with named parameter
+    // named parameter
     biodata(age = 22, name = "Eko")
 
-    // function with return value
+    // return value
     val result = add(1, 2)
     println(result)
 
-    // function with return value (shorter)
+    // return value (shorter)
     val result2 = addShorter(1, 2)
     println(result2)
+
+    // varargs parameter
+    val result3 = sum("meja", 1, 2, 3, 4, 5)
+    println(result3)
+
+    // extension function
+    val name = "Halim"
+    name.hello()
 }
